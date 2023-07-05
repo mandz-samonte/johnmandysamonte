@@ -1,113 +1,191 @@
-import Image from 'next/image'
+import Image from "next/image";
+import Container from "@/components/Container";
+import { TECH_STACK } from "@/data";
+import ProjectCard from "@/components/ProjectCard";
+import BlogCard from "@/components/BlogCard";
+import { Input, TextArea } from "@/components/Input";
+import { BiMouse } from "react-icons/bi";
+import { BsArrowDownShort } from "react-icons/bs";
+import { AiOutlineDownload } from "react-icons/ai";
+import getPostMetadata from "@/utils/getPostMetadata";
+import Link from "next/link";
 
 export default function Home() {
-  return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <div className="z-10 w-full max-w-5xl items-center justify-between font-mono text-sm lg:flex">
-        <p className="fixed left-0 top-0 flex w-full justify-center border-b border-gray-300 bg-gradient-to-b from-zinc-200 pb-6 pt-8 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:static lg:w-auto  lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30">
-          Get started by editing&nbsp;
-          <code className="font-mono font-bold">src/app/page.js</code>
-        </p>
-        <div className="fixed bottom-0 left-0 flex h-48 w-full items-end justify-center bg-gradient-to-t from-white via-white dark:from-black dark:via-black lg:static lg:h-auto lg:w-auto lg:bg-none">
-          <a
-            className="pointer-events-none flex place-items-center gap-2 p-8 lg:pointer-events-auto lg:p-0"
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{' '}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className="dark:invert"
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
-        </div>
-      </div>
+    const works = getPostMetadata("works");
 
-      <div className="relative flex place-items-center before:absolute before:h-[300px] before:w-[480px] before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-white before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-[240px] after:translate-x-1/3 after:bg-gradient-conic after:from-sky-200 after:via-blue-200 after:blur-2xl after:content-[''] before:dark:bg-gradient-to-br before:dark:from-transparent before:dark:to-blue-700 before:dark:opacity-10 after:dark:from-sky-900 after:dark:via-[#0141ff] after:dark:opacity-40 before:lg:h-[360px]">
-        <Image
-          className="relative dark:drop-shadow-[0_0_0.3rem_#ffffff70] dark:invert"
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
+    return (
+        <main className="flex min-h-screen flex-col items-center">
+            {/* HEADER */}
+            <Container className="md:h-screen p-5 pb-32 py-40 flex flex-col sm:justify-center">
+                <h1 className="font-black text-4xl text-center md:text-6xl lg:text-8xl ">
+                    Hi there! I'm John Mandy. A passionate <span className="text-primary">Front-End Developer</span>
+                </h1>
+                <h3 className="text-slate-500 mt-5 text-center text-sm w-full mx-auto md:text-2xl lg:text-3xl md:max-w-3xl">
+                    Focused on building beautiful and intuitive web applications and websites for your business
+                </h3>
 
-      <div className="mb-32 grid text-center lg:mb-0 lg:grid-cols-4 lg:text-left">
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Docs{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Find in-depth information about Next.js features and API.
-          </p>
-        </a>
+                <a
+                    href="path_to_file"
+                    download="proposed_file_name"
+                    className="px-5 py-3 bg-blue-600 text-white hover:bg-blue-500 text-sm md:text-base font-bold flex items-center gap-x-2 mx-auto mt-10"
+                >
+                    Download Resume <AiOutlineDownload size={20} />
+                </a>
 
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800 hover:dark:bg-opacity-30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Learn{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Learn about Next.js in an interactive course with&nbsp;quizzes!
-          </p>
-        </a>
+                <span className="flex items-center text-sm gap-2 mx-auto mt-20 md:mt-32 md:text-lg text-slate-600">
+                    <BiMouse
+                        size={20}
+                        className="animate-bounce hidden md:block"
+                    />{" "}
+                    <BsArrowDownShort
+                        size={20}
+                        className="animate-bounce md:hidden"
+                    />
+                    Scroll down to view my work
+                </span>
+            </Container>
 
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Templates{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Explore the Next.js 13 playground.
-          </p>
-        </a>
+            {/* TECH STACK */}
+            <Container className="p-5 flex flex-col md:py-20">
+                <h3 className="font-bold text-center text-2xl md:text-4xl">My Tech Stack</h3>
+                <h6 className="text-slate-500 text-center text-xs md:text-lg">Technologies I use in my projects</h6>
 
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Deploy{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
-  )
+                <div className="flex flex-wrap justify-center gap-x-5 gap-y-2 md:gap-y-5 my-10 md:max-w-lg mx-auto">
+                    {TECH_STACK.map((tech) => (
+                        <div
+                            key={tech.title}
+                            className="w-10 h-10 rounded-full shadow-md bg-white text-2xl md:text-3xl flex items-center justify-center md:w-14 md:h-14"
+                        >
+                            {tech.icon}
+                        </div>
+                    ))}
+                </div>
+
+                <a
+                    href="path_to_file"
+                    download="proposed_file_name"
+                    className="px-5 py-3 md:mt-10  text-blue-500 hover:text-blue-400 text-sm md:text-base font-bold flex items-center gap-x-2 mx-auto transition-all duration-300"
+                >
+                    Download Resume <AiOutlineDownload size={20} />
+                </a>
+            </Container>
+
+            {/* WORKS */}
+            <Container className="p-5 py-20 flex flex-col">
+                <h3 className="font-bold text-center text-lg md:text-4xl max-w-lg mx-auto">
+                    Projects I did and currently working on
+                </h3>
+                <h6 className="text-slate-500 text-center text-xs md:text-lg max-w-xl mx-auto">
+                    This projects are combinations of working in a company and passion project of mine
+                </h6>
+
+                <div className="grid grid-cols-2 my-20">
+                    {works.map(({ slug, data }) => (
+                        <ProjectCard
+                            key={slug}
+                            slug={slug}
+                            {...data}
+                        />
+                    ))}
+                </div>
+
+                <Link
+                    href="/works"
+                    className="px-5 py-3 bg-primary font-bold text-white mx-auto"
+                >
+                    View More
+                </Link>
+            </Container>
+
+            {/* ABOUT ME */}
+            <Container className="grid md:grid-cols-2 p-5 md:py-20">
+                <div className="w-full bg-slate-700 h-52 md:h-full"></div>
+                <div className="flex flex-col items-start p-5 md:p-10">
+                    <h3 className="text-blue-400 font-semibold text-lg mb-5 md:text-4xl">About Me</h3>
+                    <p className="text-base mb-10 md:text-lg font-medium">
+                        Hello, I'm John Mandy Samonte, a Junior Front-End Developer and a passionate multi-disciplinary
+                        professional with a unique blend of skills in{" "}
+                        <span className="text-blue-400 font-medium">Software Development</span>,{" "}
+                        <span className="text-amber-400 font-medium">UI/UX Design</span>, and interest in{" "}
+                        <span className="text-green-600 font-medium">Digital Marketing</span>. With the combinations of
+                        my interests in development, design, and business, it grants me the ability to create fast and
+                        intuitive products for users with business goals in mind.
+                    </p>
+
+                    <a
+                        href="path_to_file"
+                        download="proposed_file_name"
+                        className="px-5 py-3 bg-blue-600 text-white hover:bg-blue-500 text-sm md:text-base font-bold flex items-center gap-x-2"
+                    >
+                        Download Resume <AiOutlineDownload size={20} />
+                    </a>
+                </div>
+            </Container>
+
+            {/* BLOGS */}
+            <Container className="px-5 py-20 flex flex-col">
+                <h3 className="font-bold text-center text-lg mb-2 md:text-4xl">I write sometimes</h3>
+                <h6 className="text-slate-500 text-center text-xs md:text-base max-w-xl mx-auto">
+                    I write about dev, ui and ux design, productivity, marketing, tech, and life
+                </h6>
+
+                <div className="grid sm:grid-cols-2 gap-5 mt-5 md:mt-10">
+                    <BlogCard
+                        title="Sample Blog"
+                        date="June 24, 2023"
+                        description="Lorem ipsum dolor sit amet, consectetur adipiscing elit,"
+                        categories={["UI/UX Design"]}
+                    />
+                    <BlogCard
+                        title="Sample Blog"
+                        date="June 24, 2023"
+                        description="Lorem ipsum dolor sit amet, consectetur adipiscing elit,"
+                        categories={["UI/UX Design"]}
+                    />
+                    <BlogCard
+                        title="Sample Blog"
+                        date="June 24, 2023"
+                        description="Lorem ipsum dolor sit amet, consectetur adipiscing elit,"
+                        categories={["UI/UX Design"]}
+                    />
+                    <BlogCard
+                        title="Sample Blog"
+                        date="June 24, 2023"
+                        description="Lorem ipsum dolor sit amet, consectetur adipiscing elit,"
+                        categories={["UI/UX Design"]}
+                    />
+                </div>
+            </Container>
+
+            {/* CONTACT */}
+            <Container className="p-5 md:py-20">
+                <div className="bg-blue-600 grid md:grid-cols-2">
+                    <div className="flex flex-col p-5 lg:p-20">
+                        <h1 className="text-4xl font-black text-white lg:text-6xl">Let's Connect</h1>
+                    </div>
+
+                    <div className="flex flex-col p-5 gap-y-5 lg:p-20">
+                        <Input
+                            label="Name"
+                            labelClassName="text-white text-sm"
+                        />
+                        <Input
+                            label="Email"
+                            labelClassName="text-white text-sm"
+                        />
+                        <Input
+                            label="Subject"
+                            labelClassName="text-white text-sm"
+                        />
+                        <TextArea
+                            label="Message"
+                            labelClassName="text-white text-sm"
+                            rows={5}
+                        />
+                        <button className="px-5 py-3 mx-auto bg-white font-bold min-w-[120px]">Send</button>
+                    </div>
+                </div>
+            </Container>
+        </main>
+    );
 }
