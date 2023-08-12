@@ -1,0 +1,9 @@
+{
+    "title": "Lynkfri",
+    "status": "ongoing",
+    "description": "A Full stack sample project of mine while learning MERN stack (MongoDB, ExpressJS, React, Node JS). A simple clone of Linktree and Liinks. It has Authnetication feature using email and password, create your page for your links, and track your analytics in the analytics page.",
+    "categories": ["Front-End Development", "Backend Development"],
+    "type": "Sample Project",
+    "stack": ["React", "Vite", "MongoDb", "Node Js", "Express Js", "Redux Toolkit", "TailwindCSS"],
+    "demoLink": "https://example.com"
+}

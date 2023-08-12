@@ -6,3 +6,5 @@ categories: ["UI/UX Design", "Front-End Development", "Backend Development"]
 stack: ["React", "Vite", "MongoDb", "Node Js", "Express Js", "Axios", "TailwindCSS"]
 demoLink: "https://example.com"
 ---
+
+<span class="!text-red-500">Sample</span>

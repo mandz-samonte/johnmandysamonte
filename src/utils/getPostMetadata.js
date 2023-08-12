@@ -1,13 +1,13 @@
-import fs from "fs";
+import fs, { promises } from "fs";
 import matter from "gray-matter";
 
-export function getPostContent(path, slug) {
+export async function getPostContent(path, slug) {
     try {
         const folder = `posts/${path}`;
-        const file = `${folder}/${slug}.md`;
-        const content = fs.readFileSync(file, "utf8");
-        const matterResult = matter(content);
-        return matterResult;
+        const file = `${folder}/${slug}.json`;
+        const content = await promises.readFile(file);
+        const parsedJson = JSON.parse(content);
+        return parsedJson;
     } catch (err) {
         return null;
     }
@@ -16,16 +16,22 @@ export function getPostContent(path, slug) {
 export default function getPostMetadata(path) {
     const folder = `posts/${path}`;
     const files = fs.readdirSync(folder);
-    const markdownPosts = files.filter((file) => file.endsWith(".md"));
+    const markdownPosts = files.filter((file) => file.endsWith(".json"));
 
-    const posts = markdownPosts.map((filename) => {
-        const fileContents = fs.readFileSync(`posts/${path}/${filename}`, "utf8");
-        const matterResult = matter(fileContents);
-        return {
-            slug: filename.replace(".md", ""),
-            ...matterResult,
-        };
-    });
+    const posts = Promise.all(
+        markdownPosts.map(async (filename) => {
+            // const fileContents = fs.readFileSync(`posts/${path}/${filename}`, "utf8");
+            // const matterResult = matter(fileContents);
+
+            const jsonData = await promises.readFile(`posts/${path}/${filename}`);
+            const parsedJson = JSON.parse(jsonData);
+
+            return {
+                ...parsedJson,
+                slug: filename.replace(".json", ""),
+            };
+        })
+    );
 
     return posts;
 }

@@ -1,4 +1,7 @@
 import React from "react";
+import Container from "./Container";
+import { HiOutlineMail, HiOutlinePhone } from "react-icons/hi";
+import { LuLinkedin } from "react-icons/lu";
 
 const SOCIALS = [
     {
@@ -32,39 +35,38 @@ const CONTACTS = [
 
 export default function Footer() {
     return (
-        <footer className="bg-black w-full py-10">
-            <div className="grid md:grid-rows-2 md:grid-cols-3 md:grid-flow-col text-white w-full max-w-screen-xl mx-auto gap-5">
-                <h1 className="font-black text-center text-2xl md:text-left md:row-span-2 p-5 md:text-4xl">JMS.</h1>
+        <footer className="w-full">
+            <Container className="flex flex-col items-center border-t border-slate-400 pt-20 pb-10">
+                <h1 className="text-4xl font-bold mb-2">Let's create something great!</h1>
+                <h6 className="text-lg w-full max-w-2xl text-center mb-10">
+                    Feel free to connect, I would love to hear from you. Whether it's a project, a job opportunity, a
+                    question, or even just a conversation, hit me up!
+                </h6>
 
-                <div className="flex flex-col items-center md:items-start md:col-span-2">
-                    <h6 className="mb-2 font-semibold">Socials</h6>
-                    <div className="flex flex-wrap justify-center md:justify-start gap-5">
-                        {SOCIALS.map((social) => (
-                            <div
-                                key={social.title?.toLowerCase()}
-                                className="flex items-center gap-x-3"
-                            >
-                                <div className="bg-white rounded-full h-10 w-10"></div>
-                                <span className="hidden md:block">{social.title}</span>
-                            </div>
-                        ))}
+                <div className="flex justify-around w-full max-w-4xl mb-20">
+                    <div className="flex items-center justify-center text-sm gap-x-2 text-blue-500">
+                        <HiOutlinePhone />
+                        +639171184929
                     </div>
+                    <a
+                        href="mailto:johnmandysamonte@gmail.com"
+                        className="flex items-center justify-center text-sm gap-x-2 text-blue-500"
+                    >
+                        <HiOutlineMail />
+                        johnmandysamonte@gmail.com
+                    </a>
+                    <a
+                        href="https://www.linkedin.com/in/john-mandy-samonte"
+                        target="_blank"
+                        className="flex items-center justify-center text-sm gap-x-2 text-blue-500"
+                    >
+                        <LuLinkedin />
+                        LinkedIn
+                    </a>
                 </div>
-                <div className="flex flex-col items-center md:items-start md:col-span-2">
-                    <h6 className="mb-5 font-semibold">Contacts</h6>
-                    <div className="flex flex-wrap justify-center md:justify-start gap-5 md:gap-5">
-                        {CONTACTS.map((social) => (
-                            <div
-                                key={social.title?.toLowerCase()}
-                                className="flex items-center gap-x-3"
-                            >
-                                <div className="bg-white rounded-full h-10 w-10 hidden md:block"></div>
-                                <span className="text-sm md:text-base">{social.title}</span>
-                            </div>
-                        ))}
-                    </div>
-                </div>
-            </div>
+
+                <span className="text-sm text-slate-400">Design and created by John Mandy Samonte</span>
+            </Container>
         </footer>
     );
 }

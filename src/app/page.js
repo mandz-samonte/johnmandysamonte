@@ -9,15 +9,16 @@ import { BsArrowDownShort } from "react-icons/bs";
 import { AiOutlineDownload } from "react-icons/ai";
 import getPostMetadata from "@/utils/getPostMetadata";
 import Link from "next/link";
+import About from "@/sections/about";
 
-export default function Home() {
-    const works = getPostMetadata("works");
+export default async function Home() {
+    const works = await getPostMetadata("works");
 
     return (
         <main className="flex min-h-screen flex-col items-center">
             {/* HEADER */}
             <Container className="md:h-screen p-5 pb-32 py-40 flex flex-col sm:justify-center">
-                <h1 className="font-black text-4xl text-center md:text-6xl lg:text-8xl ">
+                <h1 className="font-black text-4xl text-center md:text-6xl lg:text-7xl ">
                     Hi there! I'm John Mandy. A passionate <span className="text-primary">Front-End Developer</span>
                 </h1>
                 <h3 className="text-slate-500 mt-5 text-center text-sm w-full mx-auto md:text-2xl lg:text-3xl md:max-w-3xl">
@@ -45,6 +46,8 @@ export default function Home() {
                 </span>
             </Container>
 
+            <About />
+
             {/* TECH STACK */}
             <Container className="p-5 flex flex-col md:py-20">
                 <h3 className="font-bold text-center text-2xl md:text-4xl">My Tech Stack</h3>
@@ -60,14 +63,6 @@ export default function Home() {
                         </div>
                     ))}
                 </div>
-
-                <a
-                    href="path_to_file"
-                    download="proposed_file_name"
-                    className="px-5 py-3 md:mt-10  text-blue-500 hover:text-blue-400 text-sm md:text-base font-bold flex items-center gap-x-2 mx-auto transition-all duration-300"
-                >
-                    Download Resume <AiOutlineDownload size={20} />
-                </a>
             </Container>
 
             {/* WORKS */}
@@ -80,10 +75,10 @@ export default function Home() {
                 </h6>
 
                 <div className="grid grid-cols-2 my-20">
-                    {works.map(({ slug, data }) => (
+                    {works?.map((data) => (
                         <ProjectCard
-                            key={slug}
-                            slug={slug}
+                            key={data.slug}
+                            slug={data.slug}
                             {...data}
                         />
                     ))}
@@ -123,7 +118,7 @@ export default function Home() {
             </Container>
 
             {/* BLOGS */}
-            <Container className="px-5 py-20 flex flex-col">
+            {/* <Container className="px-5 py-20 flex flex-col">
                 <h3 className="font-bold text-center text-lg mb-2 md:text-4xl">I write sometimes</h3>
                 <h6 className="text-slate-500 text-center text-xs md:text-base max-w-xl mx-auto">
                     I write about dev, ui and ux design, productivity, marketing, tech, and life
@@ -155,37 +150,7 @@ export default function Home() {
                         categories={["UI/UX Design"]}
                     />
                 </div>
-            </Container>
-
-            {/* CONTACT */}
-            <Container className="p-5 md:py-20">
-                <div className="bg-blue-600 grid md:grid-cols-2">
-                    <div className="flex flex-col p-5 lg:p-20">
-                        <h1 className="text-4xl font-black text-white lg:text-6xl">Let's Connect</h1>
-                    </div>
-
-                    <div className="flex flex-col p-5 gap-y-5 lg:p-20">
-                        <Input
-                            label="Name"
-                            labelClassName="text-white text-sm"
-                        />
-                        <Input
-                            label="Email"
-                            labelClassName="text-white text-sm"
-                        />
-                        <Input
-                            label="Subject"
-                            labelClassName="text-white text-sm"
-                        />
-                        <TextArea
-                            label="Message"
-                            labelClassName="text-white text-sm"
-                            rows={5}
-                        />
-                        <button className="px-5 py-3 mx-auto bg-white font-bold min-w-[120px]">Send</button>
-                    </div>
-                </div>
-            </Container>
+            </Container> */}
         </main>
     );
 }
